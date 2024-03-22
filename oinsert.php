@@ -1,0 +1,25 @@
+<?php
+include'admin/connection.php';
+if(isset($_POST['submit']))
+{
+	$name=$_POST['name'];
+	$mail=$_POST['mail'];
+	$number=$_POST['number'];
+	$address=$_POST['location'];
+	$pid=$_POST['pid'];
+	$pname=$_POST['pname'];
+	$meter=$_POST['meter'];
+	$price=$_POST['price'];
+	$total_price=$price*$meter;
+	$sql="insert into order_details(product_id,productname,quantity,price,name,email,phone,address) values($pid,'$pname',$meter,$total_price,'$name','$mail','$number','$address')";
+	$res=mysqli_query($conn,$sql);
+			if($res==true)
+			{
+				header("location:index.php");
+			}
+			else
+			{
+				header("location:order.php?err");
+			}
+}
+?>
